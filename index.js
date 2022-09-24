@@ -1,5 +1,3 @@
-const prompt=require("prompt-sync")({sigint:true}); 
-
 const getComputerChoice = () => {
     const randElement = possibleOutcome[Math.floor(Math.random() * possibleOutcome.length)]
     return randElement;
