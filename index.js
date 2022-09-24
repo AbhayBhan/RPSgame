@@ -56,10 +56,13 @@ for(var i=0; i<5; ++i){
 
 if(playerScore>compScore){
     console.log("Player has Won the game!");
+    alert("You won");
 }
 else if(playerScore<compScore){
     console.log("Computer has Won the game!");
+    alert("You lose");
 }
 else{
     console.log("No one Won!");
+    alert("tie");
 }
