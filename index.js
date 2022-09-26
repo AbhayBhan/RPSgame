@@ -3,7 +3,7 @@ const getComputerChoice = () => {
     return randElement;
 }
 
-const computeResult = () => {
+const computeResult = (playerChoice,computerChoice) => {
     if(playerChoice === computerChoice){
         return 2;
     }
@@ -21,48 +21,38 @@ const computeResult = () => {
     }
 }
 
+const btns = document.querySelectorAll('.choice-btn');
+btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+       gameRuntime(btn.value); 
+    })
+})
+
+const main = document.querySelector('.container');
+const score = document.createElement('div');
+score.classList.add('scoring');
+
+
 var playerChoice;
 var computerChoice;
 var decision = 0;
-var compScore = 0; 
-var playerScore = 0;
 var possibleOutcome = ["Rock","Paper","Scissor"];
 
-
-
-for(var i=0; i<5; ++i){
-    playerChoice = prompt("Enter your choice: ");
+const gameRuntime = (playerChoice) => {
     computerChoice =  getComputerChoice();
     decision = computeResult(playerChoice,computerChoice);
     switch (decision) {
-        case 0:
-            console.log("Computer Wins");
-            compScore += 1;
-            console.log(`Player Score : ${playerScore}   Computer Score : ${compScore}`);
-            break;
-        case 1:
-            console.log("Player Wins");
-            playerScore += 1;
-            console.log(`Player Score : ${playerScore}   Computer Score : ${compScore}`);
-            break;
-        case 2:
-            console.log("Equal");
-            compScore += 1;
-            playerScore += 1;
-            console.log(`Player Score : ${playerScore}   Computer Score : ${compScore}`);
-            break;
+    case 0:
+        score.innerHTML = "<h1>Computer has Won!</h1>";
+        main.append(score);
+        break;
+    case 1:
+        score.innerHTML = "<h1>Player has Won!</h1>";
+        main.append(score);
+        break;
+    case 2:
+        score.innerHTML = "<h1>No one Won!</h1>";
+        main.append(score);
+        break;
     }
-}
-
-if(playerScore>compScore){
-    console.log("Player has Won the game!");
-    alert("You won");
-}
-else if(playerScore<compScore){
-    console.log("Computer has Won the game!");
-    alert("You lose");
-}
-else{
-    console.log("No one Won!");
-    alert("tie");
 }
